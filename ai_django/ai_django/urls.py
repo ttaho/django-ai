@@ -16,8 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from rest_framework_swagger.views import get_swagger_view
+import ai.api
+
+app_name='ai'
+
+router = routers.DefaultRouter()
+router.register('members', ai.api.MemberViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("ai/", include("ai.urls"))
+    path("ai/", include("ai.urls")),
+    path('api/v1/', include((router.urls, 'member'), namespace='api'))
 ]
