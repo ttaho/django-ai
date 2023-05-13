@@ -23,10 +23,12 @@ import ai.api
 app_name='ai'
 
 router = routers.DefaultRouter()
-router.register('members', ai.api.MemberViewSet)
+# api/v1/members1 -> ai.api.MemberViewSet 을 호출.
+router.register('members1', ai.api.MemberViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("ai/", include("ai.urls")),
-    path('api/v1/', include((router.urls, 'member'), namespace='api'))
+    path('api/v1/', include((router.urls, 'member')))
+    
 ]
